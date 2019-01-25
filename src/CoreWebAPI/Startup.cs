@@ -25,9 +25,6 @@ namespace CoreWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // something MVC
-            services.AddScoped<LudoGameEngine.IGameEngine, GameEngine.GameEngine>();
-            services.AddScoped<GameEngine.IGameRetriver, GameEngine.FileGames>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
