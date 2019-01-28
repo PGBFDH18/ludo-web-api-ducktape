@@ -81,28 +81,31 @@ namespace CoreWebAPI.Controllers
         {
             return _games.DeleteGameSession(gameId);
         }
-
+        /// <summary>
+        /// Use to move piece
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item1",
+        ///        "isComplete": true
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="gameId"></param>
+        /// <param name="playerId"></param>
+        /// <param name="pieceId"></param>
+        /// <param name="numberOfFields"></param>
+        /// <returns>Returns winner of game, returns null if no winner</returns>
         [HttpPut("{gameId}")]
+        [ProducesResponseType(typeof(Player), 200)]
         public Player ChangePlayerPiece(string gameId, int playerId, int pieceId, int numberOfFields)
         {
             var game = _games.GetGame(gameId);
-            var gamestate = game.GetGameState();
-            if ( gamestate != GameState.Started)
-            {
-                game.StartGame();
-            }else if(gamestate != GameState.Ended)
-            {
-                var player = game.GetPlayers().FirstOrDefault(x => x.PlayerId == playerId);
-                game.MovePiece(player, pieceId, numberOfFields);
-            }
-            
-            var winner = game.GetWinner();
-            if (winner is null)
-            {
-                return null;
-            }
-            
-            return winner;
+            return _LudoGame.ChangePlayerPiece(game, gameId, playerId, pieceId, numberOfFields);
         }
 
     }
