@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LudoGameEngine
 {
@@ -99,15 +98,14 @@ namespace LudoGameEngine
         {
             return _players.Where(p => p.PlayerId == currentPlayerId).FirstOrDefault();
         }
-
         public GameState GetGameState()
         {
             return _gameState;
         }
 
-        public Player[] GetPlayers()
+        public List<Player> GetPlayers()
         {
-            return _players.ToArray();
+            return _players;
         }
 
         public void MovePiece(Player player, int pieceId, int numberOfFields)
@@ -183,6 +181,7 @@ namespace LudoGameEngine
             return true;
         }
 
+
         public Player GetWinner()
         {
             foreach (var player in _players) { 
@@ -193,6 +192,28 @@ namespace LudoGameEngine
                 }
             }
             return null;
+        }
+
+        public Player ChangePlayerPiece(LudoGame game, string gameId, int playerId, int pieceId, int numberOfFields)
+        {
+            var gamestate = game.GetGameState();
+            if (gamestate != GameState.Started)
+            {
+                game.StartGame();
+            }
+            else if (gamestate != GameState.Ended)
+            {
+                var player = game.GetPlayers().FirstOrDefault(x => x.PlayerId == playerId);
+                game.MovePiece(player, pieceId, numberOfFields);
+            }
+
+            var winner = game.GetWinner();
+            if (winner is null)
+            {
+                return null;
+            }
+
+            return winner;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CoreWebAPI.Controllers
             _games = games;
             _LudoGame = ludoGame;
         }
-        [HttpGet]
+        [HttpGet("getallgames")]
         public IEnumerable<string> Get()
         {
             return _games.GetAllGames();
