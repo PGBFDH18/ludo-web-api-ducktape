@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:CoreWebAPI.Controllers.LudoController.Get">
+            <summary>
+            List all games
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.Get(System.String)">
+            <summary>
+            Get all pieces in game
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.Post(System.String)">
+            <summary>
+            1#  Add two players and create game if not exsisting
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.ListOfPlayers(System.String)">
+            <summary>
+            List all players
+            </summary>
+            <param name="gameId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.AddNewPlayers(System.String,LudoGameEngine.PlayerColor)">
+            <summary>
+            List all players
+            </summary>
+            <param name="gameId"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.GetPlayerDetails(System.String,System.Int32)">
+            <summary>
+            Get player details
+            </summary>
+            <param name="gameId"></param>
+            <param name="playerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.UpdatePlayer(System.String,System.Int32,System.String,LudoGameEngine.PlayerColor)">
+            <summary>
+            Update player
+            </summary>
+            <param name="gameId"></param>
+            <param name="playerId"></param>
+            <param name="name"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.DeletePlayer(System.String,System.Int32)">
+            <summary>
+            Delete player
+            </summary>
+            <param name="gameId"></param>
+            <param name="playerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.DeleteGameSession(System.String)">
+            <summary>
+            Delete game
+            </summary>
+            <param name="gameId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebAPI.Controllers.LudoController.ChangePlayerPiece(System.String,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Use to move piece
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /Todo
+                 {
+                    "id": 1,
+                    "name": "Item1",
+                    "isComplete": true
+                 }
+            
+             </remarks>
+             <param name="gameId"></param>
+             <param name="playerId"></param>
+             <param name="pieceId"></param>
+             <param name="numberOfFields"></param>
+             <response code="200">Returns the winner if anyone has wone</response>
+             <response code="204">Returns null if no winner</response>
+             <returns>Returns winner of game, returns null if no winner</returns>
+        </member>
+    </members>
+</doc>
