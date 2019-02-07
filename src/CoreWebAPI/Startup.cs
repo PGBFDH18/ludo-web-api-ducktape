@@ -34,6 +34,7 @@ namespace CoreWebAPI
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "MyApi.xml");
                 c.IncludeXmlComments(filePath);
+                c.DocumentFilter<SwagerDocumentFilter>();
             });
         }
 

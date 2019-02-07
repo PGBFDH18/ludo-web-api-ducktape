@@ -20,5 +20,4 @@
   <ItemGroup>
     <ProjectReference Include="..\LudoGameEngine\LudoGameEngine.csproj" />
   </ItemGroup>
-
 </Project>
