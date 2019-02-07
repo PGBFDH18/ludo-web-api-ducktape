@@ -24,7 +24,8 @@ namespace CoreWebAPI.Controllers
             return _games.GetAllGames();
         }
 
-        [HttpGet("{guid}", Name = "Get")]
+        // GET: api/ludo/{id}
+        [HttpGet("{guid}"/*, Name = "Get"*/)]
         public IEnumerable<Piece> Get(string guid)
         {
             return _games.GetGame(guid).GetAllPiecesInGame();
