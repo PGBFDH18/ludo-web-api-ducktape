@@ -18,7 +18,7 @@ namespace CoreWebAPI.Controllers
             _games = games;
             _LudoGame = ludoGame;
         }
-        [HttpGet("getallgames")]
+        [HttpGet()]
         public IEnumerable<string> Get()
         {
             return _games.GetAllGames();
@@ -100,9 +100,12 @@ namespace CoreWebAPI.Controllers
         /// <param name="playerId"></param>
         /// <param name="pieceId"></param>
         /// <param name="numberOfFields"></param>
+        /// <response code="200">Returns the winner if anyone has wone</response>
+        /// <response code="204">Returns null if no winner</response>
         /// <returns>Returns winner of game, returns null if no winner</returns>
         [HttpPut("{gameId}")]
         [ProducesResponseType(typeof(Player), 200)]
+        [ProducesResponseType(typeof(Player), 204)]
         public Player ChangePlayerPiece(string gameId, int playerId, int pieceId, int numberOfFields)
         {
             var game = _games.GetGame(gameId);

@@ -2,11 +2,12 @@
 using LudoGameEngine;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace CoreWebAPI
 {
@@ -31,6 +32,8 @@ namespace CoreWebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "MyApi.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 
@@ -46,7 +49,16 @@ namespace CoreWebAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.Use(async (context, next) =>
+            {
+                await next.Invoke();
 
+                //After going down the pipeline check if we 404'd. 
+                if (context.Response.StatusCode == StatusCodes.Status404NotFound && context.Request.Method.ToLower() == "get")
+                {
+                    context.Response.Redirect("/");
+                }
+            });
             app.UseHttpsRedirection();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.

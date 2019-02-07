@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:CoreWebAPI.Controllers.LudoController.ChangePlayerPiece(System.String,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Use to move piece
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /Todo
+                 {
+                    "id": 1,
+                    "name": "Item1",
+                    "isComplete": true
+                 }
+            
+             </remarks>
+             <param name="gameId"></param>
+             <param name="playerId"></param>
+             <param name="pieceId"></param>
+             <param name="numberOfFields"></param>
+             <response code="200">Returns the winner if anyone has wone</response>
+             <response code="204">Returns null if no winner</response>
+             <returns>Returns winner of game, returns null if no winner</returns>
+        </member>
+    </members>
+</doc>
