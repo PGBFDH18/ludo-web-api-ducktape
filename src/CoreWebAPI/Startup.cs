@@ -62,7 +62,7 @@ namespace CoreWebAPI
             });
             app.UseHttpsRedirection();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            // Enable middleware to serve generated Swagger as  JSON endpoint.
             app.UseSwagger();
             app.UseMvc();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
